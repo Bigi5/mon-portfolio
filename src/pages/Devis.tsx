@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { CheckCircle, FileText, Clock, Shield, Send, Mail } from "lucide-react"
+import { CheckCircle, Clock, Shield, Send, Mail } from "lucide-react"
 import { Link } from "react-router-dom"
 import emailjs from '@emailjs/browser'
 

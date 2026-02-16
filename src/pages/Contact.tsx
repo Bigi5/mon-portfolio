@@ -1,6 +1,6 @@
 import { useState } from "react"
-import { Mail, MapPin, Send, Clock, CheckCircle, Facebook, Instagram } from "lucide-react"
-import { Link } from "react-router-dom"
+import { Mail, MapPin, Send, CheckCircle, Facebook, Instagram } from "lucide-react"
+
 
 export default function Contact() {
   const [formData, setFormData] = useState({

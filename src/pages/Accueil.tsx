@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom"
 import { 
   ArrowRight, CheckCircle, Users, Clock, Award, 
-  Shield, Rocket, TrendingUp, Smartphone, Server,
+  Shield, Server,
   Code, Database, Cloud, Lock, Zap, Cpu
 } from "lucide-react"
 
