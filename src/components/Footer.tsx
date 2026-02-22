@@ -14,7 +14,7 @@ export default function Footer() {
               </span>
             </h3>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Solutions digitales sur mesure pour PME suisses. 
+              Solutions digitales sur mesure pour votre entreprise. 
               Développement, design et conseil.
             </p>
           </div>
@@ -24,7 +24,7 @@ export default function Footer() {
             <h4 className="font-semibold mb-4">Navigation</h4>
             <ul className="space-y-2 text-sm">
               <li><Link to="/" className="text-gray-400 hover:text-white transition-colors">Accueil</Link></li>
-              <li><Link to="/prestations" className="text-gray-400 hover:text-white transition-colors">Prestations</Link></li>
+              <li><Link to="/services" className="text-gray-400 hover:text-white transition-colors">Services</Link></li>
               <li><Link to="/realisations" className="text-gray-400 hover:text-white transition-colors">Réalisations</Link></li>
               <li><Link to="/contact" className="text-gray-400 hover:text-white transition-colors">Contact</Link></li>
             </ul>
@@ -42,7 +42,7 @@ export default function Footer() {
               </li>
               <li className="flex items-center text-gray-400">
                 <MapPin size={16} className="mr-2 flex-shrink-0" />
-                Suisse (100% distance)
+                100% télétravail
               </li>
             </ul>
           </div>
@@ -87,7 +87,7 @@ export default function Footer() {
         <div className="border-t border-gray-800 mt-12 pt-8 text-sm text-gray-400 flex flex-wrap justify-between items-center">
           <p>© 2026 BIGI TECH. Tous droits réservés.</p>
           <p className="flex items-center">
-            Made with <Heart size={14} className="mx-1 text-red-500 fill-current" /> en Suisse
+            Made with <Heart size={14} className="mx-1 text-red-500 fill-current" /> avec passion
           </p>
         </div>
       </div>

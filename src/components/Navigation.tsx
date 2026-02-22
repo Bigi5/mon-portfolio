@@ -15,9 +15,26 @@ export default function Navigation() {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  // Fermer le menu mobile quand on change de page
+  useEffect(() => {
+    setIsOpen(false)
+  }, [location])
+
+  // Empêcher le scroll du body quand le menu mobile est ouvert
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden'
+    } else {
+      document.body.style.overflow = 'unset'
+    }
+    return () => {
+      document.body.style.overflow = 'unset'
+    }
+  }, [isOpen])
+
   const navLinks = [
     { name: "Accueil", path: "/" },
-    { name: "Prestations", path: "/prestations" },
+    { name: "Services", path: "/services" }, // Changé de "Prestations" à "Services"
     { name: "Réalisations", path: "/realisations" },
     { name: "Contact", path: "/contact" },
   ]
@@ -31,8 +48,8 @@ export default function Navigation() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo BIGI TECH */}
-          <Link to="/" className="relative group">
-            <span className="text-3xl font-black tracking-tighter">
+          <Link to="/" className="relative group z-50">
+            <span className="text-2xl md:text-3xl font-black tracking-tighter">
               <span className="bg-gradient-to-r from-blue-600 via-purple-600 to-orange-500 bg-clip-text text-transparent">
                 BIGI
               </span>
@@ -68,37 +85,45 @@ export default function Navigation() {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors"
+            className="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors relative z-50"
+            aria-label="Menu"
           >
             {isOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu - Overlay */}
         {isOpen && (
-          <div className="md:hidden mt-4 pb-4">
-            <div className="flex flex-col space-y-3">
-              {navLinks.map((link) => (
+          <div className="fixed inset-0 top-0 left-0 w-full h-screen bg-white/95 backdrop-blur-md z-40 md:hidden">
+            <div className="flex flex-col items-center justify-center min-h-screen px-4">
+              <div className="flex flex-col items-center space-y-6 w-full max-w-sm">
+                {navLinks.map((link) => (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    onClick={() => setIsOpen(false)}
+                    className={`w-full text-center px-6 py-4 rounded-2xl transition-all duration-300 text-lg font-medium ${
+                      location.pathname === link.path 
+                        ? 'bg-gradient-to-r from-blue-50 to-orange-50 text-blue-600 shadow-md' 
+                        : 'text-gray-700 hover:bg-gray-50'
+                    }`}
+                  >
+                    {link.name}
+                  </Link>
+                ))}
                 <Link
-                  key={link.path}
-                  to={link.path}
+                  to="/devis"
                   onClick={() => setIsOpen(false)}
-                  className={`px-4 py-2 rounded-lg transition-colors ${
-                    location.pathname === link.path 
-                      ? 'bg-blue-50 text-blue-600' 
-                      : 'hover:bg-gray-50'
-                  }`}
+                  className="w-full px-6 py-4 bg-gradient-to-r from-blue-600 to-orange-500 text-white rounded-2xl font-medium text-center text-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 mt-4"
                 >
-                  {link.name}
+                  Devis gratuit
                 </Link>
-              ))}
-              <Link
-                to="/devis"
-                onClick={() => setIsOpen(false)}
-                className="px-4 py-2 bg-gradient-to-r from-blue-600 to-orange-500 text-white rounded-lg font-medium text-center"
-              >
-                Devis gratuit
-              </Link>
+                
+                {/* Petit message optionnel */}
+                <p className="text-gray-400 text-sm mt-8">
+                  Solutions digitales sur mesure
+                </p>
+              </div>
             </div>
           </div>
         )}
