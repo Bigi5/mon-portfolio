@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Mail, MapPin, Send, CheckCircle, Facebook, Instagram } from "lucide-react"
-
+import { Link } from "react-router-dom"
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -12,7 +12,7 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Iui tu peux aussi connecter à EmailJS si tu veux
+    // Ici tu peux connecter à EmailJS si tu veux
     console.log("Message de contact:", formData)
     setSubmitted(true)
   }
@@ -20,11 +20,11 @@ export default function Contact() {
   return (
     <div className="pt-20">
       {/* Hero */}
-      <section className="py-20 bg-gradient-to-br from-blue-600 to-purple-600 text-white">
+      <section className="py-20 bg-gradient-to-r from-blue-600 to-orange-500 text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-5xl font-black mb-6">Contact</h1>
+          <h1 className="text-5xl md:text-6xl font-black mb-6">Contact</h1>
           <p className="text-xl text-white/90 max-w-3xl mx-auto">
-            Réponse sous 24h • 100% par email
+            Réponse sous 24h • Échangez par email
           </p>
         </div>
       </section>
@@ -52,9 +52,9 @@ export default function Contact() {
                 <div className="flex items-start">
                   <MapPin className="w-6 h-6 text-blue-600 mr-4 flex-shrink-0" />
                   <div>
-                    <h3 className="font-semibold mb-1">Basé à</h3>
-                    <p className="text-gray-600">Suisse (100% distance)</p>
-                    <p className="text-sm text-gray-500">Disponible en visio</p>
+                    <h3 className="font-semibold mb-1">Localisation</h3>
+                    <p className="text-gray-600">100% télétravail</p>
+                    <p className="text-sm text-gray-500">Disponible par email</p>
                   </div>
                 </div>
 
@@ -66,7 +66,7 @@ export default function Contact() {
                       href="https://web.facebook.com/profile.php?id=61585974059820" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="p-3 bg-blue-100 text-blue-600 rounded-full hover:bg-blue-200 transition-colors"
+                      className="p-3 bg-blue-100 text-blue-600 rounded-full hover:bg-blue-200 transition-colors hover:scale-110 transition-transform"
                       aria-label="Facebook"
                     >
                       <Facebook size={20} />
@@ -75,14 +75,14 @@ export default function Contact() {
                       href="https://www.instagram.com/bigi_tech01/" 
                       target="_blank" 
                       rel="noopener noreferrer"
-                      className="p-3 bg-pink-100 text-pink-600 rounded-full hover:bg-pink-200 transition-colors"
+                      className="p-3 bg-pink-100 text-pink-600 rounded-full hover:bg-pink-200 transition-colors hover:scale-110 transition-transform"
                       aria-label="Instagram"
                     >
                       <Instagram size={20} />
                     </a>
                     <a 
                       href="mailto:bouncarlos@gmail.com"
-                      className="p-3 bg-red-100 text-red-600 rounded-full hover:bg-red-200 transition-colors"
+                      className="p-3 bg-red-100 text-red-600 rounded-full hover:bg-red-200 transition-colors hover:scale-110 transition-transform"
                       aria-label="Email"
                     >
                       <Mail size={20} />
@@ -120,7 +120,7 @@ export default function Contact() {
                         required
                         value={formData.name}
                         onChange={(e) => setFormData({...formData, name: e.target.value})}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
                         placeholder="Jean Dupont"
                       />
                     </div>
@@ -132,8 +132,8 @@ export default function Contact() {
                         required
                         value={formData.email}
                         onChange={(e) => setFormData({...formData, email: e.target.value})}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
-                        placeholder="votre@email.ch"
+                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
+                        placeholder="votre@email.com"
                       />
                     </div>
 
@@ -144,7 +144,7 @@ export default function Contact() {
                         rows={5}
                         value={formData.message}
                         onChange={(e) => setFormData({...formData, message: e.target.value})}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600"
+                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-600 focus:border-transparent transition-all"
                         placeholder="Votre message..."
                       />
                     </div>
@@ -152,11 +152,15 @@ export default function Contact() {
 
                   <button
                     type="submit"
-                    className="w-full py-4 bg-gradient-to-r from-blue-600 to-orange-500 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300 flex items-center justify-center"
+                    className="w-full py-4 bg-gradient-to-r from-blue-600 to-orange-500 text-white rounded-xl font-semibold hover:shadow-xl hover:scale-105 transition-all duration-300 flex items-center justify-center group"
                   >
-                    <Send className="mr-2" size={20} />
+                    <Send className="mr-2 group-hover:translate-x-1 transition-transform" size={20} />
                     Envoyer le message
                   </button>
+
+                  <p className="text-xs text-gray-400 text-center mt-4">
+                    * Champs obligatoires • Réponse garantie sous 24h
+                  </p>
                 </form>
               )}
             </div>
