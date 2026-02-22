@@ -26,7 +26,7 @@ import {
   Linkedin, 
   MessageCircle, 
   Coffee,
-  Globe // Ajout de l'icône Globe manquante
+  Globe
 } from "lucide-react"
 
 export default function Accueil() {
@@ -117,23 +117,26 @@ export default function Accueil() {
 
   return (
     <div className="pt-20 overflow-hidden bg-gradient-to-b from-white via-blue-50/30 to-white">
-      {/* Hero Section */}
+      {/* Hero Section avec image de fond plus visible */}
       <motion.section 
         style={{ scale: scaleHero, opacity: opacityHero }}
         className="relative min-h-[90vh] flex items-center overflow-hidden"
       >
-        {/* Background lumineux */}
+        {/* Image de fond avec overlay plus léger pour meilleure visibilité */}
         <div className="absolute inset-0">
-          <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-orange-50 z-10" />
-          <div className="absolute inset-0 opacity-20">
-            <div className="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full blur-3xl animate-pulse" />
-            <div className="absolute bottom-20 right-10 w-96 h-96 bg-orange-200 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
-          </div>
           <img 
             src="https://images.unsplash.com/photo-1551434678-e076c223a692?w=1920"
             alt="Background"
-            className="w-full h-full object-cover opacity-5"
+            className="w-full h-full object-cover"
           />
+          {/* Overlay dégradé plus léger pour que l'image reste visible */}
+          <div className="absolute inset-0 bg-gradient-to-br from-blue-600/70 via-purple-600/60 to-orange-500/70 z-10" />
+          
+          {/* Effets de lumière subtils */}
+          <div className="absolute inset-0 opacity-30 z-10">
+            <div className="absolute top-20 left-10 w-72 h-72 bg-white/30 rounded-full blur-3xl animate-pulse" />
+            <div className="absolute bottom-20 right-10 w-96 h-96 bg-white/20 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
+          </div>
         </div>
 
         <div className="relative z-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
@@ -143,25 +146,25 @@ export default function Accueil() {
             transition={{ duration: 0.6 }}
             className="max-w-3xl"
           >
-            {/* Badge */}
+            {/* Badge - version plus claire sur fond sombre */}
             <motion.div 
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2 }}
-              className="inline-flex items-center bg-white shadow-lg px-4 py-2 rounded-full mb-8 border border-gray-100"
+              className="inline-flex items-center bg-white/20 backdrop-blur-md px-4 py-2 rounded-full mb-8 border border-white/30"
             >
-              <Sparkles className="w-4 h-4 text-orange-500 mr-2" />
-              <span className="text-gray-700 text-sm font-medium">Expert en développement d'applications</span>
+              <Sparkles className="w-4 h-4 text-orange-300 mr-2" />
+              <span className="text-white text-sm font-medium">Expert en développement d'applications</span>
             </motion.div>
 
             <motion.h1 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="text-5xl md:text-7xl font-black text-gray-900 mb-6 leading-tight"
+              className="text-5xl md:text-7xl font-black text-white mb-6 leading-tight"
             >
               Des solutions digitales
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-orange-500">
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 to-orange-300">
                 qui font la différence
               </span>
             </motion.h1>
@@ -170,13 +173,13 @@ export default function Accueil() {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.5 }}
-              className="text-xl text-gray-600 mb-8 leading-relaxed max-w-2xl"
+              className="text-xl text-white/90 mb-8 leading-relaxed max-w-2xl"
             >
               Développement d'applications professionnelles, sécurisées et performantes. 
               Du site vitrine à la plateforme sur mesure, je donne vie à vos idées.
             </motion.p>
 
-            {/* Statistiques */}
+            {/* Statistiques - versions avec fond semi-transparent */}
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -189,7 +192,7 @@ export default function Accueil() {
                   <motion.div 
                     key={i} 
                     whileHover={{ scale: 1.05, y: -5 }}
-                    className={`flex items-center bg-gradient-to-r ${stat.color} text-white px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300`}
+                    className={`flex items-center bg-gradient-to-r ${stat.color} px-4 py-2 rounded-full shadow-lg hover:shadow-xl transition-all duration-300`}
                   >
                     <Icon className="w-5 h-5 mr-2" />
                     <div>
@@ -218,14 +221,14 @@ export default function Accueil() {
               </Link>
               <Link
                 to="/realisations"
-                className="group px-8 py-4 bg-white text-gray-700 rounded-full font-semibold hover:bg-gray-50 transition-all duration-300 border-2 border-gray-200 inline-flex items-center hover:border-blue-300"
+                className="group px-8 py-4 bg-white/10 backdrop-blur-md text-white rounded-full font-semibold hover:bg-white/20 transition-all duration-300 border-2 border-white/30 inline-flex items-center"
               >
                 <Github className="mr-2 w-5 h-5" />
                 Voir mes projets
               </Link>
             </motion.div>
 
-            {/* Social links */}
+            {/* Social links - version plus claire */}
             <motion.div 
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -238,10 +241,10 @@ export default function Accueil() {
                   <a
                     key={i}
                     href={social.href}
-                    className="p-3 bg-white border border-gray-200 rounded-full hover:border-blue-400 hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+                    className="p-3 bg-white/10 backdrop-blur-md border border-white/30 rounded-full hover:bg-white/20 hover:border-white/50 hover:-translate-y-1 transition-all duration-300"
                     aria-label={social.label}
                   >
-                    <Icon className="w-5 h-5 text-gray-600 hover:text-blue-600" />
+                    <Icon className="w-5 h-5 text-white" />
                   </a>
                 )
               })}
@@ -255,8 +258,8 @@ export default function Accueil() {
           transition={{ repeat: Infinity, duration: 2 }}
           className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20"
         >
-          <div className="w-6 h-10 border-2 border-gray-300 rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-gradient-to-b from-blue-500 to-orange-500 rounded-full mt-2 animate-pulse" />
+          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex justify-center">
+            <div className="w-1 h-3 bg-gradient-to-b from-white to-orange-300 rounded-full mt-2 animate-pulse" />
           </div>
         </motion.div>
       </motion.section>
@@ -500,7 +503,7 @@ export default function Accueil() {
 
       {/* Call to Action */}
       <section className="relative py-24 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-r from-blue-400 to-orange-400">
+        <div className="absolute inset-0 bg-gradient-to-r from-blue-600 to-orange-500">
           <div className="absolute inset-0 opacity-20">
             <div className="absolute top-0 left-0 w-64 h-64 bg-white rounded-full blur-3xl animate-pulse" />
             <div className="absolute bottom-0 right-0 w-96 h-96 bg-white rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }} />
