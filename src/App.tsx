@@ -114,7 +114,7 @@ function Navigation({ scrollToSection }) {
 }
 
 // ==================== WAVE DIVIDER ====================
-function Wave({ flip, fill }) {
+function Wave({ flip = false, fill }: { flip?: boolean; fill: string }) {
   return (
     <svg viewBox="0 0 1440 110" className="w-full block" style={{ transform: flip ? "rotate(180deg)" : "none" }} preserveAspectRatio="none">
       <path fill={fill} d="M0,60 C240,110 480,0 720,28 C960,56 1200,110 1440,44 L1440,110 L0,110 Z" />
