@@ -261,7 +261,7 @@ function App() {
       desc: "Plateforme e-commerce complete avec panier, authentification et paiements securises.",
       tech: ["React", "TypeScript", "Laravel"],
       github: "https://github.com/Bigi5/oremi-ecommerce-frontend",
-      demo: "https://oremi-ecommerce-frontend.vercel.app"
+      demo: "https://rad-shortbread-1660f4.netlify.app/"
     },
     {
       title: "Oremi API",
@@ -302,12 +302,12 @@ function App() {
             <Linkedin size={16} />
           </div>
           <div className="grid lg:grid-cols-2 gap-12 items-center pb-20">
-            <p className="text-lg text-gray-300 leading-relaxed max-w-[460px]">
-              Je suis <span className="text-white font-medium">Carlos Boun</span>, developpeur full-stack base en Afrique de l'Ouest.
-              Je transforme des idees en applications web et mobiles concretes, avec un code propre, des interfaces
-              soignees et une attention particuliere a la performance et a la securite. Du premier ecran au
-              deploiement, je construis des solutions pensees pour etre reellement utilisees.
-            </p>
+           <p className="text-lg text-gray-300 leading-relaxed max-w-[460px]">
+  Je suis <span className="text-white font-medium">Carlos Boun</span>, développeur full-stack basé en Afrique de l'Ouest.
+  Je transforme des idées en applications web et mobiles concrètes, avec un code propre, des interfaces
+  soignées et une attention particulière à la performance et à la sécurité. Du premier écran au
+  déploiement, je construis des solutions pensées pour être réellement utilisées.
+</p>
             <div className="hidden lg:flex justify-center">
               <HeroIllustration />
             </div>
