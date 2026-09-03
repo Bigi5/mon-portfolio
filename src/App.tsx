@@ -75,7 +75,37 @@ function Navigation({
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50)
 
-      const scrollPos = window.scrollY + 120
+      // ==============================
+      // TOUT EN HAUT = ACCUEIL
+      // ==============================
+
+      if (window.scrollY < 100) {
+        setActiveSection("hero")
+        return
+      }
+
+      // ==============================
+      // TOUT EN BAS = CONTACT
+      // ==============================
+      // Cela permet à Contact de rester
+      // actif même lorsqu'on arrive sur le footer.
+
+      const scrollBottom =
+        window.scrollY + window.innerHeight
+
+      const documentHeight =
+        document.documentElement.scrollHeight
+
+      if (scrollBottom >= documentHeight - 20) {
+        setActiveSection("contact")
+        return
+      }
+
+      // ==============================
+      // DÉTECTION DES SECTIONS
+      // ==============================
+
+      const activationPoint = window.scrollY + 150
 
       const sections: Section[] = [
         "hero",
@@ -83,28 +113,28 @@ function Navigation({
         "contact",
       ]
 
+      let currentSection: Section = "hero"
+
       for (const section of sections) {
         const element = document.getElementById(section)
 
         if (!element) continue
 
         const top = element.offsetTop
-        const bottom = top + element.offsetHeight
 
-        if (scrollPos >= top && scrollPos < bottom) {
-          setActiveSection(section)
-          break
+        if (activationPoint >= top) {
+          currentSection = section
         }
       }
 
-      if (window.scrollY < 100) {
-        setActiveSection("hero")
-      }
+      setActiveSection(currentSection)
     }
 
     handleScroll()
 
-    window.addEventListener("scroll", handleScroll)
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    })
 
     return () => {
       window.removeEventListener("scroll", handleScroll)
@@ -112,7 +142,9 @@ function Navigation({
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = isOpen ? "hidden" : "unset"
+    document.body.style.overflow = isOpen
+      ? "hidden"
+      : "unset"
 
     return () => {
       document.body.style.overflow = "unset"
@@ -135,7 +167,14 @@ function Navigation({
   ]
 
   const handleClick = (ref: Section) => {
+    // IMPORTANT :
+    // on active immédiatement le bouton cliqué
+    setActiveSection(ref)
+
+    // ferme le menu mobile
     setIsOpen(false)
+
+    // lance le scroll
     scrollToSection(ref)
   }
 
@@ -157,7 +196,7 @@ function Navigation({
 
             <button
               type="button"
-              onClick={() => scrollToSection("hero")}
+              onClick={() => handleClick("hero")}
               className="relative z-50 flex items-center gap-2 group cursor-pointer shrink-0"
               aria-label="Retour à l'accueil"
             >
@@ -200,7 +239,9 @@ function Navigation({
               onClick={() => setIsOpen(!isOpen)}
               className="md:hidden relative z-50 w-10 h-10 flex items-center justify-center rounded-full hover:bg-white/10 transition-colors"
               aria-label={
-                isOpen ? "Fermer le menu" : "Ouvrir le menu"
+                isOpen
+                  ? "Fermer le menu"
+                  : "Ouvrir le menu"
               }
               aria-expanded={isOpen}
             >
@@ -322,7 +363,10 @@ function HeroIllustration() {
 
       <div
         className="relative rounded-2xl p-5 shadow-2xl bg-gray-800 border border-white/10"
-        style={{ width: 340, maxWidth: "calc(100vw - 48px)" }}
+        style={{
+          width: 340,
+          maxWidth: "calc(100vw - 48px)",
+        }}
       >
         <div className="flex items-center gap-1.5 mb-4">
           <span className="w-2.5 h-2.5 rounded-full bg-gray-600" />
@@ -459,7 +503,8 @@ function App() {
     const headerOffset = 72
 
     const elementPosition =
-      element.getBoundingClientRect().top + window.scrollY
+      element.getBoundingClientRect().top +
+      window.scrollY
 
     const offsetPosition =
       section === "hero"
